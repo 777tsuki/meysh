@@ -110,7 +110,7 @@
             echo '
             <a class=login style="height:370px;text-decoration:none">
             <h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（可能会出现在垃圾箱里）</h1><br>
-            <form target="_blank" method="post" action="testfor?link=register">
+            <form target="_blank" method="post" action="testfor.php?link=register">
             <input type="text" name="inputkey" class="import"   style="width:213px;">
             <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" value="确定">
             </form><br></a>';
@@ -182,7 +182,7 @@
               echo '
               <a class=login style="height:370px;text-decoration:none">
               <h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（可能会出现在垃圾箱里）</h1><br>
-              <form target="_blank" method="post" action="testfor?link=forgetpassword">
+              <form target="_blank" method="post" action="testfor.php?link=forgetpassword">
               <input type="text" name="inputkey" class="import"   style="width:213px;">
               <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" name="$code" value="确定">
               </form><br></a>';
@@ -288,8 +288,8 @@
                   <input type="submit" value="LOGIN" class="clickbotton"><p></p>
                 </form><br>
                 <div class="others">
-                  <a class="otherleft" href="../../user?link=forgetpassword" style="text-decoration:none;"><h2>忘记密码</h2></a>
-                  <a class="otherright" href="../../user?link=register" style="text-decoration:none;"><h2>注册</h2></a>
+                  <a class="otherleft" href="../../user.php?link=forgetpassword" style="text-decoration:none;"><h2>忘记密码</h2></a>
+                  <a class="otherright" href="../../user.php?link=register" style="text-decoration:none;"><h2>注册</h2></a>
                 </div>';
           break;
         case "register":
@@ -303,8 +303,8 @@
                   <input type="submit" value="REGISTER" class="clickbotton"><p></p>
                 </form><br>
                 <div class="others">
-                  <a class="otherleft" href="../../user?link=forgetpassword" style="text-decoration:none;"><h2>忘记密码</h2></a>
-                  <a class="otherright" href="../../user?link=login" style="text-decoration:none;"><h2>登录</h2></a>
+                  <a class="otherleft" href="../../user.php?link=forgetpassword" style="text-decoration:none;"><h2>忘记密码</h2></a>
+                  <a class="otherright" href="../../user.php?link=login" style="text-decoration:none;"><h2>登录</h2></a>
                 </div>';
           break;
         case "forgetpassword":
@@ -317,8 +317,8 @@
                   <input type="submit" value="确定" class="clickbotton"><p></p>
                 </form><br>
                 <div class="others">
-                  <a class="otherleft" href="../../user?link=login" style="text-decoration:none;"><h2>登录</h2></a>
-                  <a class="otherright" href="../../user?link=register" style="text-decoration:none;"><h2>注册</h2></a>
+                  <a class="otherleft" href="../../user.php?link=login" style="text-decoration:none;"><h2>登录</h2></a>
+                  <a class="otherright" href="../../user.php?link=register" style="text-decoration:none;"><h2>注册</h2></a>
                 </div>';
           break;
         default:
@@ -328,7 +328,7 @@
           }
           else
           {
-            header("location:user?link=login");
+            header("location:user.php?link=login");
           }
       }
     }
