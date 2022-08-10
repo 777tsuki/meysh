@@ -55,11 +55,7 @@
   if (isset($_COOKIE["user"]))
   {
     $mail=$_COOKIE["user"];
-    $servername="localhost";
-    $username="root";
-    $userpassword="bt233";
-    $dbname = "user";
-    $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+    include 'mysql.php';
     $search = mysqli_query($conn,"SELECT * FROM information
     WHERE mail='$mail'");
     $data = mysqli_fetch_assoc($search);

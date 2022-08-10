@@ -92,11 +92,7 @@
         }
         if ($start==3)
         {
-          $servername="localhost";
-          $username="root";
-          $userpassword="bt233";
-          $dbname = "user";
-          $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+          include 'mysql.php';
           $testfor = mysqli_query($conn,"SELECT * FROM information
           WHERE mail='$mail'");
           $test = mysqli_fetch_assoc($testfor);
@@ -174,11 +170,7 @@
           }
           if ($start==3)
           {
-            $servername="localhost";
-            $username="root";
-            $userpassword="bt233";
-            $dbname = "user";
-            $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+            include 'mysql.php';
             $testfor = mysqli_query($conn,"SELECT * FROM information
             WHERE mail='$mail'");
             $test = mysqli_fetch_assoc($testfor);
@@ -242,11 +234,7 @@
           }
           if ($start==2)
           {
-            $servername="localhost";
-            $username="root";
-            $userpassword="bt233";
-            $dbname = "user";
-            $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+            include 'mysql.php';
             $result = mysqli_query($conn,"SELECT * FROM information
             WHERE mail='$mail'");
             $row = mysqli_fetch_assoc($result);

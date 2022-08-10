@@ -54,11 +54,7 @@ switch ($type)
             $password=$_SESSION['registerpassword'];
             $name=$_SESSION['registername'];
             setcookie("code", "imagekey", time()-60*10);
-            $servername="localhost";
-            $username="root";
-            $userpassword="bt233";
-            $dbname = "user";
-            $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+            include 'mysql.php';
             $hashcode=password_hash("$password", PASSWORD_DEFAULT);
             $result = mysqli_query($conn,"SELECT * FROM count
             WHERE sort='1'");
@@ -118,11 +114,7 @@ switch ($type)
             $mail=$_SESSION['forgetmail'];
             $password=$_SESSION['forgetpassword'];
             setcookie("forgetcode", "sbkey", time()-60*10);
-            $servername="localhost";
-            $username="root";
-            $userpassword="bt233";
-            $dbname = "user";
-            $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+            include 'mysql.php';
             $hashcode=password_hash("$password", PASSWORD_DEFAULT);
             $search = mysqli_query($conn,"SELECT * FROM information
             WHERE mail='$mail'");
@@ -178,11 +170,7 @@ switch ($type)
             $detail=$_SESSION['submitdetail'];
             $time = date('Y-m-d H:i:s');
             setcookie("submitcode", "submitkey", time()-60*10);
-            $servername="localhost";
-            $username="root";
-            $userpassword="bt233";
-            $dbname = "user";
-            $conn = mysqli_connect($servername, $username, $userpassword,$dbname);
+            include 'mysql.php';
             $switch=mysqli_query($conn,"SELECT * FROM count
             WHERE sort='2'");
             $course_switch = mysqli_fetch_assoc($switch);
