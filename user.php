@@ -281,7 +281,7 @@
       {
         case "login":
           echo '<h1 style="text-align: center;">BTの窝</h1>
-                <form class="login" action="user" method="post">
+                <form class="login" action="user.php" method="post">
                   <h2>登录</h2><hr/><br>
                   <a>邮箱  </a><input type="text" name="mail" class="import"><br><br>
                   <a>密码  </a><input type="password" name="password" class="import"><br><br>
@@ -294,7 +294,7 @@
           break;
         case "register":
           echo '<h1 style="text-align: center;">BTの窝</h1>
-                <form class="login" action="user" method="post">
+                <form class="login" action="user.php" method="post">
                   <h2>注册</h2><hr/><br>
                   <a>你的邮箱  </a><input type="text" name="mail" class="import" style="width:300px"><br><br>
                   <a>你的昵称  </a><input type="text" name="username" class="import" style="width:300px"><br><br>
@@ -309,7 +309,7 @@
           break;
         case "forgetpassword":
           echo '<h1 style="text-align: center;">BTの窝</h1>
-                <form class="login" action="user" method="post">
+                <form class="login" action="user.php" method="post">
                   <h2>设置新密码</h2><hr/><br>
                   <a>你的邮箱  </a><input type="text" name="mail" class="import" style="width:300px"><br><br>
                   <a>新的密码  </a><input type="password" name="password" class="import" style="width:300px"><br><br>
