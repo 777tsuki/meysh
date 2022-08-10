@@ -62,7 +62,6 @@ switch ($type)
             $user="$row[user]";
             $sql = "INSERT INTO information (uuid,mail,hashcode,username,permission)
             VALUES ('$user','$mail','$hashcode','$name','1')";
-            echo "$user";
             if ($conn->query($sql) === TRUE) 
             {
               echo '<br><a href="user.php?link=login" class=login style="height:370px;text-decoration:none"><h1 style="color:rgb(215, 215, 215)"><br><br>注册成功<br><br><svg width="100px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
