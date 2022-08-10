@@ -1,0 +1,361 @@
+* {
+    box-sizing: border-box;
+}
+ 
+/* body 样式 */
+body {
+    background-color:rgb(35, 35, 35);
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-image:url(img/base/forum.jpg);
+    width:100%;
+    height:100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit:cover;
+    background-size:cover;
+}
+.blank1 {
+    float:left; 
+}
+.whole {
+    float:right;
+    font-family: Arial;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background-image:url(img/base/forum.jpg);
+    width:100%;
+    height:100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit:cover;
+    background-size:cover;
+}
+ 
+/* 标题 */
+.header {
+    padding: 100px;
+    text-align: center;
+    background: hwb(0 100% 0% / 0);
+    color: rgb(255, 255, 255);
+}
+ 
+/* 标题字体加大 */
+.header h1 {
+    font-size: 60px;
+}
+
+.header p {
+    font-size: 40px;
+}
+ 
+/* 导航 */
+.navbar {
+    overflow: hidden;
+    background-color: rgba(199, 199, 199, 0.8);
+}
+ 
+/* 导航栏样式 */
+.navbar a {
+    float: left;
+    display: block;
+    color: rgb(64, 64, 64);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s; /* Safari */
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s; /* Safari */
+}
+
+.navbar img {
+    float: right;
+}
+ 
+/* 右侧链接*/
+.navbar a.right {
+    float: right;
+}
+ 
+/* 鼠标移动到链接的颜色 */
+.navbar a:hover {
+    background-color: rgb(127, 127, 127);
+    color: rgb(255, 255, 255);
+}
+ 
+/* 列容器 */
+.row {  
+    margin:auto;
+    background-color:transparent;
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+}
+
+.main {   
+    float:right;
+    flex:90%;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    text-align: center;
+}
+.menus {
+    height:100%;
+    margin:auto;
+}
+.menu {
+    top:0px;
+    float:left;
+    height:100%;
+    width:44px;
+    border: 0;
+    padding: 7px;
+    margin: 0;
+    display:block;
+    position:fixed;
+    background-color:transparent;
+    transition:all 0.5s;
+    -webkit-transition:all 0.5s; /* Safari */
+    background-color:hsla(0, 0%, 53%, 0.8);
+}
+.menu:hover {
+    background-color:hsla(0, 0%, 53%, 0.8);
+}
+.blank {
+    position:fixed;
+    left:0px;
+    top:0px;
+    z-index:100;
+}
+.menu img {
+    width:100%;
+}
+.main img {
+    max-width:80%;
+}
+.main p {
+    color: rgb(215, 215, 215);
+    font-size: 18px;
+}
+.main h1 {
+    color: rgb(64, 64, 64);
+}
+.main h2 {
+    color: rgb(64, 64, 64);
+}
+
+.headline {
+    border-radius: 8px;
+    background-color:rgba(255, 255, 255, 0.6);
+    width:75%;
+    height:200px;
+    margin: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.forum {
+    padding: 0px;
+    border-radius: 8px;
+    background-color:rgba(255, 255, 255, 0.6);
+    width:75%;
+    height:950px;
+    margin: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.blank3 {
+    float:left;
+    display:block;
+    color:transparent;
+}
+.blank4 {
+    float:right;
+    display:block;
+    color:transparent;
+}
+.button {
+    float: left;
+    display: block;
+    color: rgb(64, 64, 64);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s; /* Safari */
+    transition: background-color 0.5s;
+    -webkit-transition: background-color 0.5s; /* Safari */
+}
+.button:hover {
+    background-color: rgb(127, 127, 127);
+    color: rgb(255, 255, 255);
+}
+.search {
+    float:right;
+    border-radius: 8px;
+    font-size:20px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid rgb(127, 127, 127);
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    padding: 10px 20px;
+    margin: 4px 2px;
+}
+
+.search:hover {
+    background-color: rgb(127, 127, 127);
+    color: white;
+}
+
+.import {
+    padding:0px 15px;
+    float:right;
+    background-color:rgba(224, 224, 224, 0.4);
+    border: 3px solid rgb(180, 180, 180);
+    box-sizing:border-box;
+    height:60px;
+    border-radius: 16px;
+    font-size: 20px;
+    transition:background-color 0.5s;
+    -webkit-transition:background-color 0.5s; /* Safari */
+}
+.import:hover {
+    border-color: rgb(127, 127, 127);
+    background-color:rgba(255, 255, 255, 0.8);
+}
+.import:focus {
+    border-color: rgb(127, 127, 127);
+  }
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    border-radius: 5px;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+ul.pagination li a.active {
+    border-radius: 5px;
+    background-color: rgb(127, 127, 127);
+    color: white;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+/* 底部 */
+.footer {
+    padding: 1px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    color: rgb(64, 64, 64);
+}
+.phonemenus {
+    position:fixed;
+    top:-230px;
+    left:-100px;
+    background-color:hsla(0, 0%, 53%, 0.8);
+    display:none;
+    width:90px;
+    z-index:99;
+    float:left;
+    height:520px;
+    border: 0;
+    padding: 7px;
+    margin: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    transition:all 0.5s;
+    -webkit-transition:all 0.5s; /* Safari */
+}
+.finalmenu:hover .phonemenus {
+    display: block;
+    left:0px;
+}
+.phonemenu img {
+    width:68px;
+}
+.smallmenu img {
+    top:0px;
+    float:left;
+    height:100%;
+    width:44px;
+    border: 0;
+    padding: 7px;
+    margin: 0;
+}
+.smallmenu {
+    width:30px;
+    height:30px;
+    display:none;
+    position:fixed;
+    left:7px;
+    top:7px;
+    z-index:100;
+    background-repeat: no-repeat;
+}
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 700px 时, 让两栏上下堆叠显示 */
+@media screen and (max-width: 1000px) {
+    .whole {
+        background-image: none;
+    }
+    .menu {
+        display:none;
+    }
+    .navbar a{
+        font-size:20px;
+    }
+    .header h1{
+        font-size:25px;
+    }
+    .blank {
+        display:none;
+    }
+    .blank1 {
+        display:none;
+    }
+    .blank2 {
+        display:none;
+    }
+    .blank3 {
+        display:none;
+    }
+    .blank4 {
+        display:none;
+    }
+    .import {
+        width:40%;
+    }
+    .forum {
+        padding:5px;
+        width:100%;
+    }
+    .headline {
+        width:100%;
+    }
+    .smallmenu {
+        display:block;
+    }
+    .button {
+        font-size:20px;
+    }
+    .search {
+        display:none;
+    }
+}
+ 
+/* 响应式布局 - 在屏幕设备宽度尺寸小于 400px 时, 让导航栏目上下堆叠显示 */
+@media screen and (max-width: 400px) {}
