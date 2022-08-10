@@ -117,7 +117,7 @@
             $to = "$mail";
             $subject = "梅什号注册验证码";
             $message = "$code" . "<br>有效期十分钟";
-            $from = "bt233.top";
+            $from = "梅什号事务处";
             $headers = "From:" . $from;
             mail($to,$subject,$message,$headers);
             session_start();

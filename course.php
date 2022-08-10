@@ -177,6 +177,7 @@ session_start();
                 $from = "梅什号事务处";
                 $headers = "From:" . $from;
                 mail($to,$subject,$message,$headers);
+                $_SESSION['submittime']=date('Y-m-d H:i:s')+10*60;
                 $_SESSION['submitcode']=$code;
                 $_SESSION['submittitle']=$title;
                 $_SESSION['submitdetail']=$detail;
