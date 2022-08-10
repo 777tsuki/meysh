@@ -55,6 +55,8 @@ switch ($type)
             $name=$_SESSION['registername'];
             setcookie("code", "imagekey", time()-60*10);
             include 'mysql.php';
+            echo "666666666666666666666666666666666666";
+            echo "$dbname";
             $hashcode=password_hash("$password", PASSWORD_DEFAULT);
             $result = mysqli_query($conn,"SELECT * FROM count
             WHERE sort='1'");
