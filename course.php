@@ -5,8 +5,8 @@ session_start();
 ?>
 <head>
 <link rel="shortcut icon" href="source/icon/logo.png">
-<title>BTの窝 | 航线</title>
-<meta name="description" content="BTの窝">
+<title>梅什号 | 航线</title>
+<meta name="description" content="梅什号">
 <meta name="keywords" content="nothing">
 <meta name="author" content="和祯_BT">
 <meta charset="UTF-8">
@@ -171,7 +171,7 @@ session_start();
                 </form><br></a>';
                 $mail=$_SESSION['mail'];
                 $to = "$mail";
-                $subject = "BTの窝提交新航线验证码";
+                $subject = "梅什号提交新航线验证码";
                 $message = "$code" . "<br>有效期十分钟";
                 $from = "bt233.top";
                 $headers = "From:" . $from;

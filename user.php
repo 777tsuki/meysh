@@ -2,8 +2,8 @@
 <html>
 <head>
 <link rel="shortcut icon" href="source/icon/logo.png">
-<title>BTの窝 | 用户</title>
-<meta name="description" content="BTの窝">
+<title>梅什号 | 用户</title>
+<meta name="description" content="梅什号">
 <meta name="keywords" content="nothing">
 <meta name="author" content="和祯_BT">
 <meta charset="UTF-8">
@@ -115,7 +115,7 @@
             <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" value="确定">
             </form><br></a>';
             $to = "$mail";
-            $subject = "BTの窝注册验证码";
+            $subject = "梅什号注册验证码";
             $message = "$code" . "<br>有效期十分钟";
             $from = "bt233.top";
             $headers = "From:" . $from;
@@ -187,7 +187,7 @@
               <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" name="$code" value="确定">
               </form><br></a>';
               $to = "$mail";
-              $subject = "BTの窝-设置新密码-验证码";
+              $subject = "梅什号-设置新密码-验证码";
               $message = "$code" . "<br>有效期十分钟";
               $from = "bt233.top";
               $headers = "From:" . $from;
@@ -280,7 +280,7 @@
       switch ($link)
       {
         case "login":
-          echo '<h1 style="text-align: center;">BTの窝</h1>
+          echo '<h1 style="text-align: center;">梅什号</h1>
                 <form class="login" action="user.php" method="post">
                   <h2>登录</h2><hr/><br>
                   <a>邮箱  </a><input type="text" name="mail" class="import"><br><br>
@@ -293,7 +293,7 @@
                 </div>';
           break;
         case "register":
-          echo '<h1 style="text-align: center;">BTの窝</h1>
+          echo '<h1 style="text-align: center;">梅什号</h1>
                 <form class="login" action="user.php" method="post">
                   <h2>注册</h2><hr/><br>
                   <a>你的邮箱  </a><input type="text" name="mail" class="import" style="width:300px"><br><br>
@@ -308,7 +308,7 @@
                 </div>';
           break;
         case "forgetpassword":
-          echo '<h1 style="text-align: center;">BTの窝</h1>
+          echo '<h1 style="text-align: center;">梅什号</h1>
                 <form class="login" action="user.php" method="post">
                   <h2>设置新密码</h2><hr/><br>
                   <a>你的邮箱  </a><input type="text" name="mail" class="import" style="width:300px"><br><br>

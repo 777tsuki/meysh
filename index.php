@@ -3,7 +3,7 @@
 <head>
 <link rel="shortcut icon" href="source/icon/logo.png">
 <title>梅什号 | 首页</title>
-<meta name="description" content="BTの窝">
+<meta name="description" content="梅什号">
 <meta name="keywords" content="nothing">
 <meta name="author" content="和祯_BT">
 <meta charset="UTF-8">
