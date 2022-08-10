@@ -174,10 +174,11 @@ session_start();
                 $to = "$mail";
                 $subject = "梅什号提交新航线验证码";
                 $message = "$code" . "<br>有效期十分钟";
-                $from = "bt233.top";
+                $from = "梅什号事务处";
                 $headers = "From:" . $from;
                 mail($to,$subject,$message,$headers);
                 $_SESSION['submitcode']=$code;
+                echo $_SESSION['submitcode'];
                 $_SESSION['submittitle']=$title;
                 $_SESSION['submitdetail']=$detail;
             }

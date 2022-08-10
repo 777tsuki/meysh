@@ -162,6 +162,7 @@ switch ($type)
     {
         $key=$_POST["submitkey"];
         $code=$_SESSION['submitcode'];
+        echo $_SESSION['submitcode'];
         if ($code==$key)
         {
             $author=$_SESSION['name'];
