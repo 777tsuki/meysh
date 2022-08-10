@@ -55,10 +55,10 @@ body {
     padding: 14px 20px;
     text-decoration: none;
     font-size: 24px;
-    transition: color 0.5s;
     -webkit-transition: color 0.5s; /* Safari */
-    transition: background-color 0.5s;
     -webkit-transition: background-color 0.5s; /* Safari */
+    transition: color 0.5s;
+    transition: background-color 0.5s;
 }
 .mainbotton {
     background-color:transparent;
@@ -69,10 +69,10 @@ body {
     padding: 14px 20px;
     text-decoration: none;
     font-size: 24px;
-    transition: color 0.5s;
     -webkit-transition: color 0.5s; /* Safari */
-    transition: background-color 0.5s;
     -webkit-transition: background-color 0.5s; /* Safari */
+    transition: background-color 0.5s;
+    transition: color 0.5s;
 }
 .mainbotton:hover {
     background-color: rgb(72, 72, 72);
@@ -192,8 +192,8 @@ body {
     height:40px;
     border-radius: 12px;
     font-size: 20px;
-    transition:background-color 0.5s;
     -webkit-transition:background-color 0.5s; /* Safari */
+    transition:background-color 0.5s;
 }
 .import:hover {
     border-color: rgb(127, 127, 127);
@@ -249,8 +249,8 @@ body {
     text-align: center;
     color:rgb(215, 215, 215);
     float:left;
-    transition:background-color 0.3s;
     -webkit-transition:background-color 0.3s; /* Safari */
+    transition:background-color 0.3s;
 }
 .otherleft:hover {
     background-color:rgb(71, 71, 71);
@@ -266,8 +266,8 @@ body {
     text-align: center;
     color:rgb(215, 215, 215);
     float:right;
-    transition:background-color 0.3s;
     -webkit-transition:background-color 0.3s; /* Safari */
+    transition:background-color 0.3s;
 }
 .otherright:hover {
     background-color:rgb(71, 71, 71);
