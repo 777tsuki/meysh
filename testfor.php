@@ -169,7 +169,6 @@ switch ($type)
             $mail=$_SESSION['mail'];
             $title=$_SESSION['submittitle'];
             $detail=$_SESSION['submitdetail'];
-            setcookie("submitcode", "submitkey", time()-60*10);
             include 'mysql.php';
             $switch=mysqli_query($conn,"SELECT * FROM count
             WHERE sort='2'");

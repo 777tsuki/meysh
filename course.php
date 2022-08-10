@@ -160,12 +160,9 @@ session_start();
             if (strlen($detail)>1 and strlen($title)>1)
             {
                 $code=Mt_rand (1001,9999);
-                $expire=time()+60*10;
-                setcookie("submitcode", "submitkey", $expire);
-                echo $_COOKIE["submitcode"];
                 echo '
                 <a class=login style="height:370px;text-decoration:none">
-                <h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（可能会出现在垃圾箱里）</h1><br>
+                <h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（验证完成前请勿关闭该窗口）</h1><br>
                 <form target="_blank" method="post" action="testfor.php?link=course">
                 <input type="text" name="submitkey" class="import"   style="width:213px;">
                 <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" name="$code" value="确定">
