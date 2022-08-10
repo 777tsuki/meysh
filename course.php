@@ -162,6 +162,7 @@ session_start();
                 $code=Mt_rand (1001,9999);
                 $expire=time()+60*10;
                 setcookie("submitcode", "submitkey", $expire);
+                echo $code;
                 echo '
                 <a class=login style="height:370px;text-decoration:none">
                 <h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（可能会出现在垃圾箱里）</h1><br>
