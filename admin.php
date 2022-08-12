@@ -61,6 +61,15 @@
       <form class="headline" method="post" >
         <input type="submit" class="mainbotton" style="text-decoration:none;border:0;" name="exitlogin" value="下船">
         <input type="submit" class="mainbotton" style="text-decoration:none;border:0;" name="forget" value="修改密码">
+        <?php
+        include 'mysql.php';
+        $mail=$_COOKIE["user"];
+        $search = mysqli_query($conn,"SELECT * FROM information
+        WHERE mail='$mail'");
+        $data = mysqli_fetch_assoc($search);
+        ?>
+        <input type="submit" class="mainbotton" style="text-decoration:none;border:0;" name="exitlogin" value="关教程">
+        <input type="submit" class="mainbotton" style="text-decoration:none;border:0;" name="exitlogin" value="开教程">
       </form>
       <div class="blankdiv"><h9>666</h9></div>
       <br>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+header("location:weihu.html");
 session_start();
 ?>
 <head>
@@ -122,7 +123,7 @@ session_start();
           break;
         case "1":/*教程详情 */
           echo '<div class="headline" style="margin:auto;">
-                  <a href="course" class="mainbotton" style="text-decoration:none;">返回</a>
+                  <a href="course.php" class="mainbotton" style="text-decoration:none;">返回</a>
                 </div>
                 <div class="blankdiv"><h9>666</h9></div>';
           $uid=$_GET['uid'];
