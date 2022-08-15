@@ -35,7 +35,7 @@ $active='<h1 style="text-align: center;">梅什号</h1>
   <input type="submit" value="LOGIN" class="clickbotton"><p></p>
 </form>';
 $login='<h1 style="text-align: center;">梅什号</h1>
-<form class="login" target="_blank" action="user.php?link=function" method="post">
+<form class="login" action="user.php?function=login" method="post">
   <h2>登录</h2><hr/><br>
   <a>邮箱  </a><input type="text" name="mail" class="import"><br><br>
   <a>密码  </a><input type="password" name="password" class="import"><br><br>
@@ -46,7 +46,7 @@ $login='<h1 style="text-align: center;">梅什号</h1>
   <a class="otherright" href="../../user.php?link=register" style="text-decoration:none;"><h2>注册</h2></a>
 </div>';
 $register='<h1 style="text-align: center;">梅什号</h1>
-<form class="login" action="user.php?link=function" method="post">
+<form class="login" action="user.php?function=register" method="post">
   <h2>注册</h2><hr/><br>
   <a>你的邮箱  </a><input type="text" name="registermail" class="import" style="width:300px"><br><br>
   <a>你的密码  </a><input type="password" name="password" class="import" style="width:300px"><br><br>
@@ -58,7 +58,7 @@ $register='<h1 style="text-align: center;">梅什号</h1>
   <a class="otherright" href="../../user.php?link=login" style="text-decoration:none;"><h2>登录</h2></a>
 </div>';
 $forgetpassword='<h1 style="text-align: center;">梅什号</h1>
-<form class="login" action="user.php?link=function" method="post">
+<form class="login" action="user.php?function=forgetpassword" method="post">
   <h2>设置新密码</h2><hr/><br>
   <a>你的邮箱  </a><input type="text" name="mail" class="import" style="width:300px"><br><br>
   <a>新的密码  </a><input type="password" name="password" class="import" style="width:300px"><br><br>

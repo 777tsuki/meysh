@@ -35,38 +35,42 @@ include 'table.php';
     <img class="blank1" src="source/icon/blank.png" width="44" height="800">
     <div class="main">
     <?php
-    switch (isset($_GET["link"])-isset($_GET["uuid"]))
+    switch (isset($_GET["link"])+isset($_GET["uuid"])*2+isset($_GET["function"])*4)
     {
       case "0":
-        $link="user";
+        if (isset($_COOKIE["user"]) or isset($_COOKIE["preuser"]))
+        {
+          include 'source/user/user.php';
+        }
+        else
+        {
+          header("location:user.php?link=login");
+        }
         break;
       case "1":
-        $link=$_GET["link"];
-        break;
-      case "-1":
-        break;
-    }
-    switch ($link)
-    {
-      case "function":
-        if (isset($_POST["password"]))
+        switch ($_GET["link"])
         {
-          #注册
-          echo '<h1 style="text-align: center">提示</h1>';
-          if (isset($_POST["registermail"]))
-          {
-            $mail=$_POST['registermail'];
+          case "login":
+            echo $login;
+            break;
+          case "register":
+            echo $register;
+            break;
+          case "forgetpassword":
+            echo $forgetpassword;
+            break;
+        }
+        break;
+      case "2":
+        break;
+      case "4":
+        echo '<h1 style="text-align: center">提示</h1>';
+        switch ($_GET["function"])
+        {
+          case "login":
+            $mail=$_POST['mail'];
             $password=$_POST['password'];
-            $repassword=$_POST['repassword'];
-            $start==0;
-            if ($password === $repassword)
-            {
-              $start++;
-            }
-            else
-            {
-              echo $inconsistent;
-            }
+            $start=0;
             if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
             {
               echo $mailerror;
@@ -84,36 +88,113 @@ include 'table.php';
             {
               $start++;
             }
-            if ($start==3)
+            if ($start==2)
             {
               include 'mysql.php';
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
-              $result = $pdo->query($result);
-              $result = $result->fetch(PDO::FETCH_ASSOC);
-              if (isset($result))
+              $result1 = $pdo->query($detect);
+              $result1 = $result1->fetch(PDO::FETCH_ASSOC);
+              $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
+              $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
+              $redetect->execute();
+              $result2 = $pdo->query($redetect);
+              $result2 = $result2->fetch(PDO::FETCH_ASSOC);
+              switch (isset($result1)-isset($result2))
               {
-                echo $existmail;
+                case "1":
+                  $hashcode="$result1[hashcode]";
+                  if (password_verify($password, $hashcode))
+                  {
+                    echo $loginsuccess;
+                    $expire=time()+60*60*24*30;
+                    setcookie("user", $mail, $expire);
+                  }
+                  else
+                  {
+                    echo $loginfail;
+                  }
+                  break;
+                case "-1":
+                  $hashcode="$result2[hashcode]";
+                  if (password_verify($password, $hashcode))
+                  {
+                    echo $loginsuccess;
+                    $expire=time()+60*60*24*30;
+                    setcookie("preuser", $mail, $expire);
+                  }
+                  else
+                  {
+                    echo $loginfail;
+                  }
+                  break;
+                case "0":
+                  echo $mailnofound;
+                  break;
               }
-              else
-              {
+            }
+            break;
+          case "register":
+            $mail=$_POST['registermail'];
+            $password=$_POST['password'];
+            $repassword=$_POST['repassword'];
+            $start==0;
+            if ($password === $repassword)
+            {
+                $start++;
+            }
+            else
+            {
+                echo $inconsistent;
+            }
+            if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
+            {
+                echo $mailerror;
+            }
+            else
+            {
+                $start++;
+            }
+            $length=strlen($password);
+            if ($length<6 or $length>16)
+            {
+                echo $lengtherror;
+            }
+            else
+            {
+                $start++;
+            }
+            if ($start==3)
+            {
+                include 'mysql.php';
+                $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
+                $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
+                $detect->execute();
+                $result = $pdo->query($result);
+                $result = $result->fetch(PDO::FETCH_ASSOC);
+                if (isset($result))
+                {
+                echo $existmail;
+                }
+                else
+                {
                 $lnk=$lik==1;
                 while ($lnk=$lik)
                 {
-                  $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-                  $bas = str_split($bas, 1);
-                  shuffle($bas);
-                  $link = implode("", $bas);
-                  $detect = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
-                  $detect->bindValue(':link', $link, PDO::PARAM_STR);
-                  $detect->execute();
-                  $result = $pdo->query($detect);
-                  $result = $result->fetch(PDO::FETCH_ASSOC);
-                  if (!isset($result))
-                  {
+                    $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                    $bas = str_split($bas, 1);
+                    shuffle($bas);
+                    $link = implode("", $bas);
+                    $detect = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
+                    $detect->bindValue(':link', $link, PDO::PARAM_STR);
+                    $detect->execute();
+                    $result = $pdo->query($detect);
+                    $result = $result->fetch(PDO::FETCH_ASSOC);
+                    if (!isset($result))
+                    {
                     $lnk==2;
-                  }
+                    }
                 }
                 echo $registersuccess;
                 $to = "$mail";
@@ -128,163 +209,72 @@ include 'table.php';
                 include 'getip.php';
                 $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
                 $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
-              }
+                }
             }
-          }
-          else
-          {
-            #忘记密码
-            if (isset($_POST["repassword"]))
+            break;
+          case "forgetpassword":
+            $mail=$_POST['mail'];
+            $password=$_POST['password'];
+            $repassword=$_POST['repassword'];
+            $start=0;
+            if ($password === $repassword)
             {
-              $mail=$_POST['mail'];
-              $password=$_POST['password'];
-              $repassword=$_POST['repassword'];
-              $start=0;
-              if ($password === $repassword)
-              {
-                $start++;
-              }
-              else
-              {
-                echo $inconsistent;
-              }
-              if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
-              {
-                echo $mailerror;
-              }
-              else
-              {
-                $start++;
-              }
-              $length=strlen($password);
-              if ($length<6 or $length>16)
-              {
-                echo $lengtherror;
-              }
-              else
-              {
-                $start++;
-              }
-              if ($start==3)
-              {
-                include 'mysql.php';
-                $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
-                $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
-                $detect->execute();
-                $result = $pdo->query($detect);
-                $result = $result->fetch(PDO::FETCH_ASSOC);
-                if (isset($result))
-                {
-                  $code=Mt_rand (1001,9999);
-                  $expire=time()+60*10;
-                  setcookie("forgetcode", "sbkey", $expire);
-                  echo $forgetcode;
-                  $to = "$mail";
-                  $subject = "梅什号-设置新密码-验证码";
-                  $message = "$code" . "<br>有效期十分钟";
-                  $from = "梅什号事务处";
-                  $headers = "From:" . $from;
-                  mail($to,$subject,$message,$headers);
-                  session_start();
-                  $_SESSION['forgetmail']=$mail;
-                  $_SESSION['forgetpassword']=$password;
-                  $_SESSION['forgetcode']=$code;
-                }
-                else
-                {
-                  echo $mailnofound;
-                }
-              }
+            $start++;
             }
             else
             {
-              #登录
-              $mail=$_POST['mail'];
-              $password=$_POST['password'];
-              $start=0;
-              if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
-              {
-                echo $mailerror;
-              }
-              else
-              {
-                $start++;
-              }
-              $length=strlen($password);
-              if ($length<6 or $length>16)
-              {
-                echo $lengtherror;
-              }
-              else
-              {
-                $start++;
-              }
-              if ($start==2)
-              {
-                include 'mysql.php';
-                $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
-                $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
-                $detect->execute();
-                $result1 = $pdo->query($detect);
-                $result1 = $result1->fetch(PDO::FETCH_ASSOC);
-                $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
-                $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
-                $redetect->execute();
-                $result2 = $pdo->query($redetect);
-                $result2 = $result2->fetch(PDO::FETCH_ASSOC);
-                switch (isset($result1)-isset($result2))
-                {
-                  case "1":
-                    $hashcode="$result1[hashcode]";
-                    if (password_verify($password, $hashcode))
-                    {
-                      echo $loginsuccess;
-                      $expire=time()+60*60*24*30;
-                      setcookie("user", $mail, $expire);
-                    }
-                    else
-                    {
-                      echo $loginfail;
-                    }
-                    break;
-                  case "-1":
-                    $hashcode="$result2[hashcode]";
-                    if (password_verify($password, $hashcode))
-                    {
-                      echo $loginsuccess;
-                      $expire=time()+60*60*24*30;
-                      setcookie("preuser", $mail, $expire);
-                    }
-                    else
-                    {
-                      echo $loginfail;
-                    }
-                    break;
-                  case "0":
-                    echo $mailnofound;
-                }
-              }
+            echo $inconsistent;
             }
-          }
-        }
-        break;
-      case "login":
-        echo $login;
-        break;
-      case "register":
-        echo $register;
-        break;
-      case "forgetpassword":
-        echo $forgetpassword;
-        break;
-      case "user":
-        if (isset($_COOKIE["user"]) or isset($_COOKIE["preuser"]))
-        {
-          include 'source/user/user.php';
-        }
-        else
-        {
-          header("location:user.php?link=login");
+            if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
+            {
+            echo $mailerror;
+            }
+            else
+            {
+            $start++;
+            }
+            $length=strlen($password);
+            if ($length<6 or $length>16)
+            {
+            echo $lengtherror;
+            }
+            else
+            {
+            $start++;
+            }
+            if ($start==3)
+            {
+            include 'mysql.php';
+            $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
+            $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
+            $detect->execute();
+            $result = $pdo->query($detect);
+            $result = $result->fetch(PDO::FETCH_ASSOC);
+            if (isset($result))
+            {
+                $code=Mt_rand (1001,9999);
+                $expire=time()+60*10;
+                setcookie("forgetcode", "sbkey", $expire);
+                echo $forgetcode;
+                $to = "$mail";
+                $subject = "梅什号-设置新密码-验证码";
+                $message = "$code" . "<br>有效期十分钟";
+                $from = "梅什号事务处";
+                $headers = "From:" . $from;
+                mail($to,$subject,$message,$headers);
+                session_start();
+                $_SESSION['forgetmail']=$mail;
+                $_SESSION['forgetpassword']=$password;
+                $_SESSION['forgetcode']=$code;
+            }
+            else
+            {
+                echo $mailnofound;
+            }
+            }
+            break;
+          default:
+            header("location:source/weihu.html");
         }
         break;
       default:
