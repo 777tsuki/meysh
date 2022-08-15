@@ -35,7 +35,7 @@ $active='<h1 style="text-align: center;">梅什号</h1>
   <input type="submit" value="LOGIN" class="clickbotton"><p></p>
 </form>';
 $login='<h1 style="text-align: center;">梅什号</h1>
-<form class="login" action="user.php?link=function" method="post">
+<form class="login" target="_blank" action="user.php?link=function" method="post">
   <h2>登录</h2><hr/><br>
   <a>邮箱  </a><input type="text" name="mail" class="import"><br><br>
   <a>密码  </a><input type="password" name="password" class="import"><br><br>
