@@ -175,12 +175,11 @@ switch ($type)
       $detect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
       $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
       $detect->execute();
-      $result = $pdo->query($detect);
-      $result = $result->fetch(PDO::FETCH_ASSOC);
+      $result = $detect->fetch(PDO::FETCH_ASSOC);
       if (isset($result))
       {
         $hashcode="$result[hashcode]";
-        if (password_verify($password, $hashcode))
+        if (password_verify($password, $hashcode) and "$result[link]"==$_SESSION['link'])
         {
           echo $activesuccess;
           $_SESSION['mail']=$mail;
@@ -210,9 +209,8 @@ switch ($type)
       $detect = $pdo->prepare("SELECT * FROM information WHERE username=:username");
       $detect->bindValue(':username', $inputname, PDO::PARAM_STR);
       $detect->execute();
-      $result = $pdo->query($detect);
-      $result = $result->fetch(PDO::FETCH_ASSOC);
-      if (isset($result))
+      $result = $detect->fetch(PDO::FETCH_ASSOC);
+      if ("$result[username]"!=null)
       {
         echo $existusername;
       }
@@ -221,8 +219,7 @@ switch ($type)
         $getuid = $pdo->prepare("SELECT * FROM count WHERE sort=:sort");
         $getuid->bindValue(':sort', 1, PDO::PARAM_INT);
         $getuid->execute();
-        $row = $pdo->query($getuid);
-        $row = $row->fetch(PDO::FETCH_ASSOC);
+        $row = $getuid->fetch(PDO::FETCH_ASSOC);
         $uuid="$row[user]";
         $mail=$_SESSION['mail'];
         include 'getip.php';
@@ -237,6 +234,9 @@ switch ($type)
         $delete->execute();
         setcookie("preuser", $mail, time()-3600);
         setcookie("user", $mail, time()+60*60*24*30);
+        unset($_SESSION['mail']);
+        unset($_SESSION['hashcode']);
+        unset($_SESSION['link']);
         header("location:user.php");
       }
     }
@@ -319,9 +319,10 @@ switch ($type)
     $detect = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
     $detect->bindValue(':link', $_GET["link"], PDO::PARAM_STR);
     $detect->execute();
-    $result = $pdo->query($detect);
-    if (isset($result))
+    $result = $detect->fetch(PDO::FETCH_ASSOC);
+    if ("$result[mail]"!=0)
     {
+      $_SESSION['link']=$_GET["link"];
       echo $active;
     }
     else

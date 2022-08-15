@@ -175,44 +175,46 @@ include 'table.php';
                 $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
                 $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
                 $detect->execute();
-                $result = $pdo->query($result);
-                $result = $result->fetch(PDO::FETCH_ASSOC);
-                if (isset($result))
+                $result1 = $detect->fetch(PDO::FETCH_ASSOC);
+                $redetect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
+                $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
+                $redetect->execute();
+                $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
+                if ("$result1[mail]"!=null and "$result2[mail]"!=null)
                 {
-                echo $existmail;
+                  echo $existmail;
                 }
                 else
                 {
-                $lnk=$lik==1;
-                while ($lnk=$lik)
-                {
+                  $lnk=$lik==1;
+                  while ($lnk=$lik)
+                  {
                     $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                     $bas = str_split($bas, 1);
                     shuffle($bas);
                     $link = implode("", $bas);
-                    $detect = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
-                    $detect->bindValue(':link', $link, PDO::PARAM_STR);
-                    $detect->execute();
-                    $result = $pdo->query($detect);
-                    $result = $result->fetch(PDO::FETCH_ASSOC);
-                    if (!isset($result))
+                    $testfot = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
+                    $testfor->bindValue(':link', $link, PDO::PARAM_STR);
+                    $testfor->execute();
+                    $test = $testfor->fetch(PDO::FETCH_ASSOC);
+                    if ("$test[link]"==null)
                     {
-                    $lnk==2;
+                      $lnk==2;
                     }
-                }
-                echo $registersuccess;
-                $to = "$mail";
-                $subject = "梅什号船员身份激活链接";
-                $message = "https://meysh.cc/function.php?link=" . $link . "<br>" . "你也可以仅使用临时账号，这并不会影响浏览和回复，但无法发布主题帖和其它正式文章。";
-                $from = "梅什号事务处";
-                $headers = "From:" . $from;
-                mail($to,$subject,$message,$headers);
-                $cid=Mt_rand (100000001,999999999);
-                $hashcode=password_hash("$password", PASSWORD_DEFAULT);
-                $time = date('Y-m-d H:i:s')+10*60;
-                include 'getip.php';
-                $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
-                $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
+                  }
+                  echo $registersuccess;
+                  $to = "$mail";
+                  $subject = "梅什号船员身份激活链接";
+                  $message = "https://meysh.cc/function.php?link=" . $link . "<br>" . "你也可以仅使用临时账号，这并不会影响浏览和回复，但无法发布主题帖和其它正式文章。";
+                  $from = "梅什号事务处";
+                  $headers = "From:" . $from;
+                  mail($to,$subject,$message,$headers);
+                  $cid=Mt_rand (100000001,999999999);
+                  $hashcode=password_hash("$password", PASSWORD_DEFAULT);
+                  $time = date('Y-m-d H:i:s')+10*60;
+                  include 'getip.php';
+                  $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
+                  $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
                 }
             }
             break;
@@ -252,9 +254,8 @@ include 'table.php';
             $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
             $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
             $detect->execute();
-            $result = $pdo->query($detect);
-            $result = $result->fetch(PDO::FETCH_ASSOC);
-            if (isset($result))
+            $result = $detect->fetch(PDO::FETCH_ASSOC);
+            if ("$result[uuid]"!=null)
             {
                 $code=Mt_rand (1001,9999);
                 $expire=time()+60*10;
