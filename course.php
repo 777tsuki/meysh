@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<?php
+include 'updataip.php';
+?>
 <html>
 <?php
-header("location:weihu.html");
+header("location:source/weihu.html");
 session_start();
 ?>
 <head>

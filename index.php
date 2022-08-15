@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+include 'updataip.php';
+?>
 <html>
 <head>
 <link rel="shortcut icon" href="source/icon/logo.png">
