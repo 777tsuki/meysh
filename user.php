@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'updataip.php';
+include 'table.php';
 ?>
 <html>
 <head>
@@ -18,7 +19,6 @@ include 'updataip.php';
 <body>
 <div class="whole">
   <?php
-  include 'table.php';
   if (!isset($_POST["password"]))
   {
     if (!isset($_GET["link"]))
