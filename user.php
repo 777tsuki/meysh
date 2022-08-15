@@ -91,16 +91,12 @@ include 'table.php';
             if ($start==2)
             {
               include 'mysql.php';
-              echo 2;
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
-              echo 3;
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
-              echo 4;
               $detect->execute();
-              echo 5;
-              $hope = $pdo->query($detect);
+              $result1 = $pdo->query($detect);
               echo 6;
-              $result1 = $hope->fetch(PDO::FETCH_ASSOC);
+              $result1->fetch(PDO::FETCH_ASSOC);
               echo 7;
               /*
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
