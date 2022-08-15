@@ -95,15 +95,17 @@ include 'table.php';
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
               $result1 = $detect->fetch(PDO::FETCH_ASSOC);
-              $result1="$result1[mail]";
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-              $result2="$result2[mail]";
-              echo isset($result2);
-              echo $result2;
-              switch (isset($result1)-isset($result2))
+              if ($mail="$result1[mail]")
+              {$result==1;}
+              elseif ($mail="$result2[mail]")
+              {$result==-1;}
+              else
+              {$result==0;}
+              switch ($result)
               {
                 case "1":
                   $hashcode="$result1[hashcode]";
