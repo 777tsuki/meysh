@@ -96,7 +96,6 @@ include 'table.php';
               $detect->execute();
               $result1 = $pdo->query($detect);
               echo 6;
-              $result1->fetch(PDO::FETCH_ASSOC);
               echo 7;
               /*
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
