@@ -90,7 +90,9 @@ include 'table.php';
             }
             if ($start==2)
             {
+              echo 1;
               include 'mysql.php';
+              echo 2;
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
