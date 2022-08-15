@@ -100,11 +100,11 @@ include 'table.php';
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
               if ($mail="$result1[mail]")
-              {$result==1;}
+              {$result=1;}
               elseif ($mail="$result2[mail]")
-              {$result==-1;}
+              {$result=-1;}
               else
-              {$result==0;}
+              {$result=0;}
               switch ($result)
               {
                 case "1":
