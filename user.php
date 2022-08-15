@@ -94,16 +94,11 @@ include 'table.php';
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
-              $hope = $pdo->query($detect);
-              echo 6;
               $result1 = $detect->fetch(PDO::FETCH_ASSOC);
-              echo 7;
-              /*
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
-              $result2 = $pdo->query($redetect);
-              $result2 = $result2->fetch(PDO::FETCH_ASSOC);
+              $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
               switch (isset($result1)-isset($result2))
               {
                 case "1":
@@ -135,8 +130,7 @@ include 'table.php';
                 case "0":
                   echo $mailnofound;
                   break;
-              }*/
-              echo "$result1[hashcode]";
+              }
             }
             break;
           case "register":
