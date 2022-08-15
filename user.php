@@ -96,6 +96,7 @@ include 'table.php';
               $detect->execute();
               $result1 = $pdo->query($detect);
               $result1 = $result1->fetch(PDO::FETCH_ASSOC);
+              /*
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
@@ -132,7 +133,8 @@ include 'table.php';
                 case "0":
                   echo $mailnofound;
                   break;
-              }
+              }*/
+              echo "$result1[hashcode]";
             }
             break;
           case "register":
