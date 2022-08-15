@@ -209,12 +209,16 @@ include 'table.php';
                   $from = "梅什号事务处";
                   $headers = "From:" . $from;
                   mail($to,$subject,$message,$headers);
+                  echo 1;
                   $cid=Mt_rand (100000001,999999999);
                   $hashcode=password_hash("$password", PASSWORD_DEFAULT);
                   $time = date('Y-m-d H:i:s')+10*60;
                   include 'getip.php';
+                  echo 2;
                   $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
+                  echo 3;
                   $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
+                  echo 4;
                 }
             }
             break;
