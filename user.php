@@ -102,7 +102,7 @@ include 'table.php';
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
               $result2="$result2[mail]";
               echo $result1;
-              echo isset($result1);
+              echo isset($result2);
               switch (isset($result1)-isset($result2))
               {
                 case "1":
