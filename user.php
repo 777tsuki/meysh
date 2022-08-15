@@ -94,9 +94,9 @@ include 'table.php';
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
-              $result1 = $pdo->query($detect);
+              $hope = $pdo->query($detect);
               echo 6;
-              $result1->fetch();
+              $result1 = $hope->fetch();
               echo 7;
               /*
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
