@@ -94,11 +94,11 @@ include 'table.php';
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
-              $result1 = $detect->fetch(PDO::FETCH_ASSOC);
+              $result1 = $pdo->query($detect);
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
-              $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
+              $result2 = $pdo->query($redetect);
               switch (isset($result1)-isset($result2))
               {
                 case "1":
