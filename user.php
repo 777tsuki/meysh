@@ -205,20 +205,16 @@ include 'table.php';
                   echo $registersuccess;
                   $to = "$mail";
                   $subject = "梅什号船员身份激活链接";
-                  $message = "https://meysh.cc/function.php?link=" . $link . "<br>" . "你也可以仅使用临时账号，这并不会影响浏览和回复，但无法发布主题帖和其它正式文章。";
+                  $message = "https://meysh.cc/function.php?link=" . $link;
                   $from = "梅什号事务处";
                   $headers = "From:" . $from;
                   mail($to,$subject,$message,$headers);
-                  echo 1;
                   $cid=Mt_rand (100000001,999999999);
                   $hashcode=password_hash("$password", PASSWORD_DEFAULT);
-                  $time = date('Y-m-d H:i:s')+10*60;
+                  $time = date('Y-m-d H:i:s');
                   include 'getip.php';
-                  echo 2;
                   $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
-                  echo 3;
                   $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
-                  echo 4;
                 }
             }
             break;
