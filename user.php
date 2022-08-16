@@ -267,6 +267,7 @@ include 'table.php';
                 $from = "梅什号事务处";
                 $headers = "From:" . $from;
                 mail($to,$subject,$message,$headers);
+                echo 666;
                 session_start();
                 $_SESSION['forgetmail']=$mail;
                 $_SESSION['forgetpassword']=$password;
