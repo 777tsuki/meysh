@@ -7,6 +7,16 @@ $message = "<br>有效期十分钟";
 $from = "梅什号事务处";
 $headers = "From:" . $from;
 mail($to,$subject,$message,$headers);
+ini_set( 'display_errors', 1 );
+error_reporting( E_ALL );
+if (mail ($to,$subject,$message,$headers))
+{
+  echo "The email message was sent.";
+}
+else
+{
+  echo "The email message was not sent.";
+}
 ?>
 <html>
 <head>
