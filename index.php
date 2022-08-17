@@ -15,7 +15,7 @@ if (mail ($to,$subject,$message,$headers))
 }
 else
 {
-  echo "The email message was not sent.";
+  echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
 ?>
 <html>
