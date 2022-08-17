@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
 include 'updataip.php';
-$to = "zhengfengtiansb@163.com";
-$subject = "梅什号-设置新密码-验证码";
-$message = "<br>有效期十分钟";
-$from = "梅什号事务处";
+$to = "bt233@qq.com";
+$subject = "password";
+$message = "hello";
+$from = "meysh";
 $headers = "From:" . $from;
 mail($to,$subject,$message,$headers);
 ini_set( 'display_errors', 1 );
