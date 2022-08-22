@@ -95,16 +95,16 @@ include 'table.php';
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-              if ("$mail"=="$result1[mail]")
+              if ($mail==$result1['mail'])
               {$result=1;}
-              elseif ("$mail"=="$result2[mail]")
+              elseif ($mail==$result2['mail'])
               {$result=-1;}
               else
               {$result=0;}
               switch ($result)
               {
                 case "1":
-                  $hashcode="$result1[hashcode]";
+                  $hashcode=$result1['hashcode'];
                   if (password_verify($password, $hashcode))
                   {
                     echo $loginsuccess;
@@ -117,7 +117,7 @@ include 'table.php';
                   }
                   break;
                 case "-1":
-                  $hashcode="$result2[hashcode]";
+                  $hashcode=$result2['hashcode'];
                   if (password_verify($password, $hashcode))
                   {
                     echo $loginsuccess;
