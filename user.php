@@ -70,23 +70,19 @@ include 'table.php';
           case "login":
             $mail=$_POST['mail'];
             $password=$_POST['password'];
-            $start=0;
+            $length=strlen($password);
+            $start==0;
             if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
             {
               echo $mailerror;
             }
-            else
-            {
-              $start++;
-            }
-            $length=strlen($password);
-            if ($length<6 or $length>16)
+            elseif ($length<6 or $length>16)
             {
               echo $lengtherror;
             }
             else
             {
-              $start++;
+              $start==2;
             }
             if ($start==2)
             {
@@ -143,31 +139,23 @@ include 'table.php';
             $mail=$_POST['registermail'];
             $password=$_POST['password'];
             $repassword=$_POST['repassword'];
-            $start==0;
-            if ($password === $repassword)
-            {
-                $start++;
-            }
-            else
-            {
-                echo $inconsistent;
-            }
-            if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
-            {
-                echo $mailerror;
-            }
-            else
-            {
-                $start++;
-            }
             $length=strlen($password);
-            if ($length<6 or $length>16)
+            $start==0;
+            if ($password != $repassword)
             {
-                echo $lengtherror;
+              echo $inconsistent;
+            }
+            elseif (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail))
+            {
+              echo $mailerror;
+            }
+            elseif ($length<6 or $length>16)
+            {
+              echo $lengtherror;
             }
             else
             {
-                $start++;
+            $start==3;
             }
             if ($start==3)
             {
@@ -203,18 +191,22 @@ include 'table.php';
                     }
                   }
                   echo $registersuccess;
-                  $to = "$mail";
-                  $subject = "梅什号船员身份激活链接";
-                  $message = "https://meysh.cc/function.php?link=" . $link;
-                  $from = "梅什号事务处";
+                  ini_set( 'display_errors', 1 );
+                  error_reporting( E_ALL );
+                  $from = "admin@meysh.cc";
+                  $to = $mail;
+                  $subject = "梅什号-船员身份激活链接";
+                  $message = "https://meysh.cc/function.php?link=$link";
+                  $headers = "MIME-Version: 1.0" . "\r\n";
+                  $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                   $headers = "From:" . $from;
-                  mail($to,$subject,$message,$headers);
+                  mail($to,$subject,$message, $headers);
                   $cid=Mt_rand (100000001,999999999);
                   $hashcode=password_hash("$password", PASSWORD_DEFAULT);
                   $time = date('Y-m-d H:i:s');
                   include 'getip.php';
                   $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
-                  $prereg->execute([$cid,$mail,$link,$hashcode,$time,$ip]);
+                  $prereg->execute(array($cid,$mail,$link,$hashcode,$time,$ip));
                 }
             }
             break;
@@ -222,31 +214,23 @@ include 'table.php';
             $mail=$_POST['mail'];
             $password=$_POST['password'];
             $repassword=$_POST['repassword'];
-            $start=0;
-            if ($password === $repassword)
-            {
-            $start++;
-            }
-            else
-            {
-            echo $inconsistent;
-            }
-            if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
-            {
-            echo $mailerror;
-            }
-            else
-            {
-            $start++;
-            }
             $length=strlen($password);
-            if ($length<6 or $length>16)
+            $start=0;
+            if ($password != $repassword)
             {
-            echo $lengtherror;
+              echo $inconsistent;
+            }
+            elseif (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail))
+            {
+              echo $mailerror;
+            }
+            elseif ($length<6 or $length>16)
+            {
+              echo $lengtherror;
             }
             else
             {
-            $start++;
+            $start==3;
             }
             if ($start==3)
             {
@@ -267,7 +251,7 @@ include 'table.php';
                 $to = $mail;
                 $subject = "梅什号-设置新密码-验证码";
                 $message = "
-                $code 有效期十分钟
+                [梅什号事务处]$code 有效期十分钟
                 ";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
