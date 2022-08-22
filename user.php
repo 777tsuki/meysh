@@ -168,14 +168,14 @@ include 'table.php';
                 $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
                 $redetect->execute();
                 $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-                if ("$result1[mail]"!=null and "$result2[mail]"!=null)
+                if ($result1['mail']!=null and $result2['mail']!=null)
                 {
                   echo $existmail;
                 }
                 else
                 {
-                  $lnk=$lik==1;
-                  while ($lnk=$lik)
+                  $lnk=$lik=1;
+                  while ($lnk==$lik)
                   {
                     $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                     $bas = str_split($bas, 1);
@@ -185,9 +185,9 @@ include 'table.php';
                     $testfor->bindValue(':link', $link, PDO::PARAM_STR);
                     $testfor->execute();
                     $test = $testfor->fetch(PDO::FETCH_ASSOC);
-                    if ("$test[link]"==null)
+                    if ($test['link']==null)
                     {
-                      $lnk==2;
+                      $lnk=2;
                     }
                   }
                   echo $registersuccess;
