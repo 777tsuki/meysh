@@ -178,14 +178,6 @@ include 'table.php';
                   $bas = str_split($bas, 1);
                   shuffle($bas);
                   $link = implode("", $bas);
-                  $testfot = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
-                  $testfor->bindValue(':link', $link, PDO::PARAM_STR);
-                  $testfor->execute();
-                  $test = $testfor->fetch(PDO::FETCH_ASSOC);
-                  if ($link==$test['mail'])
-                  {
-                    echo "你中彩票了，快去找管理员兑奖！";
-                  }
                   echo $registersuccess;
                   ini_set( 'display_errors', 1 );
                   error_reporting( E_ALL );
