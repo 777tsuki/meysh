@@ -84,6 +84,7 @@ include 'table.php';
             {
               $start==2;
             }
+            echo 666;
             if ($start==2)
             {
               echo 1;
@@ -142,6 +143,7 @@ include 'table.php';
                   break;
               }
             }
+            echo 777;
             break;
           case "register":
             $mail=$_POST['registermail'];
