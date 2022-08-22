@@ -261,12 +261,26 @@ include 'table.php';
                 $expire=time()+60*10;
                 setcookie("forgetcode", "sbkey", $expire);
                 echo $forgetcode;
-                $to = "$mail";
-                $subject = "梅什号-设置新密码-验证码";
-                $message = "$code" . "<br>有效期十分钟";
-                $from = "梅什号事务处";
+                ini_set( 'display_errors', 1 );
+                error_reporting( E_ALL );
+                $from = "test@hostinger-tutorials.com";
+                $to = $mail;
+                $subject = "Checking PHP mail";
+                $message = "
+                <html>
+                <head>
+                    <title>$code This is a test HTML email</title>
+                </head>
+                <body>
+                    <p>Hi, it’s a test email. Please ignore.</p>
+                </body>
+                </html>
+                ";
+               // The content-type header must be set when sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 $headers = "From:" . $from;
-                mail($to,$subject,$message,$headers);
+                mail($to,$subject,$message, $headers);
                 echo 666;
                 session_start();
                 $_SESSION['forgetmail']=$mail;
