@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <?php
 include 'updataip.php';
-$to = "bt233@qq.com";
-$subject = "password";
-$message = "hello";
-$from = "meysh";
-$headers = "From:" . $from;
-mail($to,$subject,$message,$headers);
-ini_set( 'display_errors', 1 );
-error_reporting( E_ALL );
-if (mail ($to,$subject,$message,$headers))
-{
-  echo "The email message was sent.";
-}
-else
-{
-  echo 'Mailer Error: ' . $mail->ErrorInfo;
-}
 ?>
 <html>
 <head>
