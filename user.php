@@ -281,7 +281,6 @@ include 'table.php';
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 $headers = "From:" . $from;
                 mail($to,$subject,$message, $headers);
-                echo 666;
                 session_start();
                 $_SESSION['forgetmail']=$mail;
                 $_SESSION['forgetpassword']=$password;
