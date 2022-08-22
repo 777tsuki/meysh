@@ -84,39 +84,30 @@ include 'table.php';
             {
               $start++;
             }
-            echo 666;
             if ($start==1)
             {
-              echo 1;
               include 'mysql.php';
-              echo 2;
               $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
               $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $detect->execute();
-              echo 3;
               $result1 = $detect->fetch(PDO::FETCH_ASSOC);
-              echo 4;
               $redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-              echo 5;
-              if ($mail="$result1[mail]")
+              if ($mail=="$result1[mail]")
               {$result=1;}
-              elseif ($mail="$result2[mail]")
+              elseif ($mail=="$result2[mail]")
               {$result=-1;}
               else
               {$result=0;}
-              echo 6;
               switch ($result)
               {
                 case "1":
                   $hashcode="$result1[hashcode]";
                   if (password_verify($password, $hashcode))
                   {
-                    echo 7;
                     echo $loginsuccess;
-                    echo 8;
                     $expire=time()+60*60*24*30;
                     setcookie("user", $mail, $expire);
                   }
@@ -143,7 +134,6 @@ include 'table.php';
                   break;
               }
             }
-            echo 777;
             break;
           case "register":
             $mail=$_POST['registermail'];
