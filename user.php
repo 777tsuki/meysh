@@ -174,9 +174,13 @@ include 'table.php';
                 }
                 else
                 {
+                  echo 1;
                   $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                  echo 2;
                   $bas = str_split($bas, 1);
+                  echo 3;
                   shuffle($bas);
+                  echo 4;
                   $link = implode("", $bas);
                   echo $registersuccess;
                   ini_set( 'display_errors', 1 );
