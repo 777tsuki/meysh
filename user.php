@@ -95,9 +95,9 @@ include 'table.php';
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-              if ($mail=="$result1[mail]")
+              if ("$mail"=="$result1[mail]")
               {$result=1;}
-              elseif ($mail=="$result2[mail]")
+              elseif ("$mail"=="$result2[mail]")
               {$result=-1;}
               else
               {$result=0;}
