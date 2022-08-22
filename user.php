@@ -82,10 +82,10 @@ include 'table.php';
             }
             else
             {
-              $start==2;
+              $start++;
             }
             echo 666;
-            if ($start==2)
+            if ($start==1)
             {
               echo 1;
               include 'mysql.php';
@@ -165,9 +165,9 @@ include 'table.php';
             }
             else
             {
-            $start==3;
+            $start++;
             }
-            if ($start==3)
+            if ($start==1)
             {
                 include 'mysql.php';
                 $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
@@ -240,9 +240,9 @@ include 'table.php';
             }
             else
             {
-            $start==3;
+            $start++;
             }
-            if ($start==3)
+            if ($start==1)
             {
             include 'mysql.php';
             $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
