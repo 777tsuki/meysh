@@ -71,7 +71,7 @@ include 'table.php';
             $mail=$_POST['mail'];
             $password=$_POST['password'];
             $length=strlen($password);
-            $start==0;
+            $start=0;
             if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
             {
               echo $mailerror;
@@ -95,9 +95,9 @@ include 'table.php';
               $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
               $redetect->execute();
               $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-              if ($mail=$result1['mail'])
+              if ($mail==$result1['mail'])
               {$result=1;}
-              elseif ($mail=$result2['mail'])
+              elseif ($mail==$result2['mail'])
               {$result=-1;}
               else
               {$result=0;}
@@ -140,7 +140,7 @@ include 'table.php';
             $password=$_POST['password'];
             $repassword=$_POST['repassword'];
             $length=strlen($password);
-            $start==0;
+            $start=0;
             if ($password != $repassword)
             {
               echo $inconsistent;
