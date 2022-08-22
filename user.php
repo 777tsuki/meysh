@@ -174,21 +174,17 @@ include 'table.php';
                 }
                 else
                 {
-                  $lnk=$lik=1;
-                  while ($lnk==$lik)
+                  $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                  $bas = str_split($bas, 1);
+                  shuffle($bas);
+                  $link = implode("", $bas);
+                  $testfot = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
+                  $testfor->bindValue(':link', $link, PDO::PARAM_STR);
+                  $testfor->execute();
+                  $test = $testfor->fetch(PDO::FETCH_ASSOC);
+                  if ($link==$test['mail'])
                   {
-                    $bas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-                    $bas = str_split($bas, 1);
-                    shuffle($bas);
-                    $link = implode("", $bas);
-                    $testfot = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
-                    $testfor->bindValue(':link', $link, PDO::PARAM_STR);
-                    $testfor->execute();
-                    $test = $testfor->fetch(PDO::FETCH_ASSOC);
-                    if ($test['link']==null)
-                    {
-                      $lnk=2;
-                    }
+                    echo "你中彩票了，快去找管理员兑奖！";
                   }
                   echo $registersuccess;
                   ini_set( 'display_errors', 1 );
