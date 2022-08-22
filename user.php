@@ -263,20 +263,12 @@ include 'table.php';
                 echo $forgetcode;
                 ini_set( 'display_errors', 1 );
                 error_reporting( E_ALL );
-                $from = "test@hostinger-tutorials.com";
+                $from = "admin@meysh.cc";
                 $to = $mail;
-                $subject = "Checking PHP mail";
+                $subject = "梅什号-设置新密码-验证码";
                 $message = "
-                <html>
-                <head>
-                    <title>$code This is a test HTML email</title>
-                </head>
-                <body>
-                    <p>Hi, it’s a test email. Please ignore.</p>
-                </body>
-                </html>
+                $code 有效期十分钟
                 ";
-               // The content-type header must be set when sending HTML email
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 $headers = "From:" . $from;
