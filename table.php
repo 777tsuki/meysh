@@ -24,7 +24,7 @@ $usermenu='<div>
 $forgetcode='<a class=login style="height:370px;text-decoration:none"><h1 style="color:rgb(215, 215, 215)"><br><br>请输入验证码<br>（可能会出现在垃圾箱里）</h1><br><form target="_blank" method="post" action="function.php?link=forgetpassword"><input type="text" name="inputkey" class="import"   style="width:213px;">
 <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" value="确定">
 </form><br></a>';
-$activesuccess='<a class=login style="height:370px;text-decoration:none"><h1 style="color:rgb(215, 215, 215)"><br><br>报上你的名字<br>（不要太长太短太奇怪哦）</h1><br><form target="_blank" method="post" action="function.php?link=setusername"><input type="text" name="$inputname" class="import"   style="width:213px;">
+$activesuccess='<a class=login style="height:370px;text-decoration:none"><h1 style="color:rgb(215, 215, 215)"><br><br>报上你的名字<br>（不要太长太短太奇怪哦）</h1><br><form target="_blank" method="post" action="function.php?link=setusername"><input type="text" name="inputname" class="import"   style="width:213px;">
 <input type="submit" class="clickbotton" style="text-decoration:none;border:0;" value="确定">
 </form><br></a>';
 $active='<h1 style="text-align: center;">梅什号</h1>
