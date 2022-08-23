@@ -73,7 +73,7 @@
   </div>
 </div>
 <div class="footer">
-  <h2>敬请期待</h2>
+  <p>Copyright©2022 meysh.cc.All rights reserved.</p><p>本站发布内容如无特别声明则其一切权利归属于其发布者、创作者或各自的版权所有者。</p>
 </div>
 
 </div>
