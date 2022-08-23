@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'updataip.php';
+include 'table.php';
 ?>
 <html>
 <head>
@@ -19,17 +20,9 @@ include 'updataip.php';
 readfile("source/menus.html");
 ?>
 <div class="whole">
-  
-<div>
-  <img class="blank1" src="source/icon/blank.png" width="44" height="44">
-  <div class="navbar">
-    <img class="blank0" src="source/icon/blank.png" width="44px" height="30">
-    <a class="navbarbotton" href="index.php">甲板</a>
-    <a class="navbarbotton" href="course.php">海图</a>
-    <a class="navbarbotton" href="forum.php">酒馆</a>
-    <a class="navbarbotton" href="user.php" style="float:right;">吊床</a>
-  </div>
-</div>
+<?php
+echo $normalmenu;
+?>
 <div class="row">
   <img class="blank1" src="source/icon/blank.png" width="44" height="1000">
   <div class="main">
