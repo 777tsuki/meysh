@@ -13,8 +13,8 @@
     margin: 0;
     display:block;
     position:fixed;
-    transition:all 0.5s;
     -webkit-transition:all 0.5s; /* Safari */
+    transition:all 0.5s;
     background-color:rgba(34, 34, 34, 1);
 }
 .blank {
@@ -229,8 +229,8 @@
     padding: 7px;
     margin: 0;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    transition:all 0.5s;
     -webkit-transition:all 0.5s; /* Safari */
+    transition:all 0.5s;
 }
 .finalmenu:hover .phonemenus {
     display: block;
