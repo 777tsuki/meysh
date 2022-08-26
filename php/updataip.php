@@ -1,7 +1,7 @@
 <?php
 if (isset($_COOKIE["user"]) or isset($_COOKIE["preuser"]))
 {
-    include 'php/getip.php';
+    include 'getip.php';
     include 'mysql.php';
     switch (isset($_COOKIE["user"])-isset($_COOKIE["preuser"]))
     {

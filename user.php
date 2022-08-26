@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include 'php/user.php'
+include 'php/user.php';
 ?>
 <html>
 <head>
@@ -10,36 +10,44 @@ include 'php/user.php'
 <meta name="keywords" content="nothing">
 <meta name="author" content="和祯_BT">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
 <link rel="stylesheet" type="text/css" href="source/style.css">
 <link rel="stylesheet" type="text/css" href="source/menus.css">
-<script src="source/user.js"></script>
 </head>
 <body>
-<div class="whole">
-<div>
-<img class="blank1" src="source/icon/blank.png" width="44" height="44">
-<div class="navbar">
-  <a class="navbarbotton" href="index.php">甲板</a>
-  <a class="navbarbotton" href="course.php">海图</a>
-  <a class="navbarbotton" href="forum.php">酒馆</a>
-  <a class="navbarbotton" href="user.php" style="float:right;">吊床</a>
-</div>
-</div>
-  <div class="row">
-    <img class="blank1" src="source/icon/blank.png" width="44" height="700">
-    <div class="main">
-      <?php
-      echo $main;
-      ?>
+  <div class="whole">
+    <div>
+      <img class="blank1" src="source/icon/blank.png" width="44" height="44">
+      <div class="navbar">
+        <a class="navbarbotton" style="float:left;text-align:left;">
+          <?php include 'source/menus.php'?>
+        </a>
+        <a class="navbarbotton" href="user.php" style="width:100px;height:50px;float:right;">
+          <img src="<?php echo $avatar?>" class="avatar" style="top:-15px;right:8px;width:40px;height:40px;border:0;float:right">
+        </a>
+        <a class="navbarbotton" style="margin:auto;font-size:24px;text-align:center;">
+          <?php
+          echo $page;
+          ?>
+        </a>
+      </div>
     </div>
+    <div class="row">
+      <img class="blank1" src="source/icon/blank.png" width="44" height="700">
+      <div class="main">
+        <?php
+        if (isset($main))
+        {
+          echo $main;
+        }
+        else
+        {
+          include 'php/usertable.php';
+        }
+        ?>
+      </div>
+    </div>
+    <?php readfile("source/menus.html");?>
   </div>
-  <div class="footer">
-  <p>Copyright©2022 meysh.cc.All rights reserved.</p><p>本站发布内容如无特别声明则其一切权利归属于其发布者、创作者或各自的版权所有者。</p>
-</div>
-</div>
-<?php
-readfile("source/menus.html");
-?>
 </body>
 </html>
