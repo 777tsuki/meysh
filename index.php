@@ -1,11 +1,10 @@
 <?php
-$app=1;
 require 'route.php';
 $route = new Router();
-$route->get('/notice',function () {
+$route->get('/noti',function () {
   echo '$newside ==== ';
 });
-$route->get('/notice/{id}',function ($id) {
+$route->get('/noti/{id}',function ($id) {
   echo '$newsideeeeeeeeeeeeeee ==== '.$id;
 });
 $route->dispatch();
