@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<?php
-include 'php/user.php';
-?>
 <html>
 <head>
-<link rel="shortcut icon" href="source/icon/logo.png">
-<title>梅什号 | 船员</title>
+<link rel="shortcut icon" href="source/svg/logo.svg">
+<title><?php echo '梅什号 | '.$page?></title>
 <meta name="description" content="梅什号">
 <meta name="keywords" content="nothing">
 <meta name="author" content="和祯_BT">
@@ -15,39 +12,34 @@ include 'php/user.php';
 <link rel="stylesheet" type="text/css" href="source/menus.css">
 </head>
 <body>
-  <div class="whole">
+  <div class="whole" style="min-height:700px">
     <div>
       <img class="blank1" src="source/icon/blank.png" width="44" height="44">
       <div class="navbar">
         <a class="navbarbotton" style="float:left;text-align:left;">
-          <?php include 'source/menus.php'?>
+          <?php include 'menus.php'?>
         </a>
-        <a class="navbarbotton" href="user.php" style="width:100px;height:50px;float:right;">
+        <a class="navbarbotton" href="user" style="width:100px;height:50px;float:right;">
           <img src="<?php echo $avatar?>" class="avatar" style="top:-15px;right:8px;width:40px;height:40px;border:0;float:right">
         </a>
         <a class="navbarbotton" style="margin:auto;font-size:24px;text-align:center;">
-          <?php
-          echo $page;
-          ?>
+          <?php echo $page;?>&ensp;
         </a>
       </div>
     </div>
     <div class="row">
-      <img class="blank1" src="source/icon/blank.png" width="44" height="700">
       <div class="main">
         <?php
-        if (isset($main))
-        {
-          echo $main;
-        }
+        if (isset($content))
+        {include $content;}
+        elseif (isset($main))
+        {echo $main;}
         else
-        {
-          include 'php/usertable.php';
-        }
+        {header("/");}
         ?>
       </div>
     </div>
-    <?php readfile("source/menus.html");?>
+    <?php include 'pcmenus.php'?>
   </div>
 </body>
 </html>

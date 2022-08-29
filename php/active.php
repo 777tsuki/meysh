@@ -1,18 +1,13 @@
 <?php
-$page="激活临时账号";
 $mail=$_POST['mail'];
 $password=$_POST['password'];
+$length=strlen($password);
 $start=0;
 if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/",$mail)) 
 {
     $main= $mailerror;
 }
-else
-{
-    $start++;
-}
-$length=strlen($password);
-if ($length<6 or $length>16)
+elseif ($length<6 or $length>16)
 {
     $main= $lengtherror;
 }
@@ -20,30 +15,28 @@ else
 {
     $start++;
 }
-if ($start==2)
+if ($start==1)
 {
-    include 'mysql.php';
-    $detect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
+    $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
     $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
     $detect->execute();
     $result = $detect->fetch(PDO::FETCH_ASSOC);
-    if (isset($result))
+    if (isset($result['hashcode']))
     {
-    $hashcode=$result['hashcode'];
-    if (password_verify($password, $hashcode) and $result['link']==$_SESSION['link'])
-    {
-        $main= $activesuccess;
-        $_SESSION['activemail']=$mail;
-        $_SESSION['hashcode']=$hashcode;
+        $hashcode=$result['hashcode'];
+        if (password_verify($password, $hashcode) and $result['permission']==$_SESSION['link'])
+        {
+            $main= $activesuccess;
+            $_SESSION['activemail']=$mail;
+        }
+        else
+        {
+            $main= $loginfail;
+        }
     }
     else
     {
-        $main= $loginfail;
-    }
-    }
-    else
-    {
-    $main= $mailnofound;
+        $main= $mailnofound;
     }
 }
 ?>

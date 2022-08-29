@@ -1,107 +1,50 @@
 <?php
-ob_start();
-session_start();
-include 'updataip.php';
-include 'table.php';
-include 'information.php';
+include 'view/table.php';
 switch (isset($_GET["link"])+isset($_GET["uuid"])*2+isset($_GET["function"])*4)
 {
     case "0":
-        if (isset($_COOKIE["user"]) or isset($_COOKIE["preuser"]))
+        if (isset($_COOKIE["user"]))
         {
-            $page="船员中心";
-            unset($main);
+            if ($_SESSION['changeavatar']=="sb")
+            {
+                echo '<script type="text/javascript">alert("图片路径错误");</script>';
+                unset($_SESSION['changeavatar']);
+            }
+            elseif ($_SESSION['changeavatar']=="nt")
+            {
+                echo '<script type="text/javascript">alert("图片类型错误");</script>';
+                unset($_SESSION['changeavatar']);
+            }
+            $admin=file_get_contents("view/admin.php");
+            if ($result['permission']==0)
+            {
+
+            }
+            include 'view/usertable.php';
         }
         else
         {
-            header("location:user.php?link=login");
+            header("location:user?link=login");
         }
         break;
     case "1":
         switch ($_GET["link"])
         {
             case "login":
-                $page="登录";
                 $main= $login;
                 break;
             case "register":
-                $page="注册";
                 $main= $register;
                 break;
             case "forgetpassword":
-                $page="重置密码";
                 $main= $forgetpassword;
                 break;
-            default:
-                $page="验证账号";
-                include 'mysql.php';
-                $detect = $pdo->prepare("SELECT * FROM preuser WHERE link=:link");
-                $detect->bindValue(':link', $_GET["link"], PDO::PARAM_STR);
-                $detect->execute();
-                $result = $detect->fetch(PDO::FETCH_ASSOC);
-                if ($result['mail']!=0)
-                {
-                    $_SESSION['link']=$_GET["link"];
-                    $main= $active;
-                }
-                else
-                {
-                    header("location:weihu.html");
-                }
         }
+        echo '<img class="blank1" src="source/img/blank.png" width="44" height="700"><div class="tips">'.$main.'</div>';
         break;
     case "2":
         break;
-    case "4":
-        switch ($_GET["function"])
-        {
-            case "login":
-                include 'login.php';
-                break;
-            case "register":
-                include 'register.php';
-                break;
-            case "forgetpassword":
-                include 'forgetpassword.php';
-                break;
-            case "active":
-                include 'active.php';
-                break;
-            case "verify":
-                include 'verify.php';
-                break;
-            case "setpassword":
-                include 'setpassword.php';
-                break;
-            case "setusername":
-                include 'setusername.php';
-                break;
-            default:
-                $page="验证账号";
-                include 'mysql.php';
-                $detect = $pdo->prepare("SELECT * FROM loser WHERE link=:link");
-                $detect->bindValue(':link', $_GET["function"], PDO::PARAM_STR);
-                $detect->execute();
-                $result = $detect->fetch(PDO::FETCH_ASSOC);
-                if ($result['mail']==null)
-                {
-                    header("location:weihu.html");
-                }
-                elseif (strtotime("now")>$result['time'])
-                {
-                    $main= $outdated;
-                    $delete= $pdo->prepare("DELETE FROM loser WHERE link=:link");
-                    $delete->bindValue(':link', $_GET["function"], PDO::PARAM_STR);
-                    $delete->execute();
-                }
-                else
-                {
-                    $_SESSION['link']=$_GET["function"];
-                    $main= $verify;
-                }
-        }
-        break;
     default:
-        header("location:source/weihu.html");
+        header("location:error");
 }
 ?>

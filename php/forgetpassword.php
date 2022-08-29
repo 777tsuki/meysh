@@ -1,26 +1,18 @@
 <?php
-$page="重置密码";
 $mail=$_POST['mail'];
-include 'mysql.php';
 $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
 $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
 $detect->execute();
 $result1 = $detect->fetch(PDO::FETCH_ASSOC);
-$redetect = $pdo->prepare("SELECT * FROM preuser WHERE mail=:mail");
+$redetect = $pdo->prepare("SELECT * FROM loser WHERE mail=:mail");
 $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
 $redetect->execute();
 $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-$redetects = $pdo->prepare("SELECT * FROM loser WHERE mail=:mail");
-$redetects->bindValue(':mail', $mail, PDO::PARAM_STR);
-$redetects->execute();
-$result3 = $redetects->fetch(PDO::FETCH_ASSOC);
-if ($result1['uuid']!=null)
-{$result=1;}
-elseif ($result2['cid']!=null)
+if (isset($result1['uuid']))
 {$result=1;}
 else
 {$result=-1;}
-if ($result3['code']!=null)
+if (isset($result2['code']))
 {$result=0;}
 switch ($result)
 {
@@ -36,7 +28,7 @@ switch ($result)
         $from = "Meysh@meysh.cc";
         $to = $mail;
         $subject = "梅什号-设置新密码链接";
-        $message = "https://meysh.cc/user.php?function=$link 有效期十分钟，请勿泄露给他人";
+        $message = "https://meysh.cc/link/$link 有效期十分钟，请勿泄露给他人";
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers = "From:" . $from;

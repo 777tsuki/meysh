@@ -1,5 +1,12 @@
 <?php
-$page="注册";
+$detect1 = $pdo->prepare("SELECT * FROM count WHERE sort=:sort");
+$detect1->bindValue(':sort', 2, PDO::PARAM_STR);
+$detect1->execute();
+$result1 = $detect1->fetch(PDO::FETCH_ASSOC);
+if ($result1['user']=0)
+{
+    header("location:error");
+}
 $mail=$_POST['registermail'];
 $password=$_POST['password'];
 $repassword=$_POST['repassword'];
@@ -23,16 +30,11 @@ $start++;
 }
 if ($start==1)
 {
-    include 'mysql.php';
     $detect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
     $detect->bindValue(':mail', $mail, PDO::PARAM_STR);
     $detect->execute();
-    $result1 = $detect->fetch(PDO::FETCH_ASSOC);
-    $redetect = $pdo->prepare("SELECT * FROM information WHERE mail=:mail");
-    $redetect->bindValue(':mail', $mail, PDO::PARAM_STR);
-    $redetect->execute();
-    $result2 = $redetect->fetch(PDO::FETCH_ASSOC);
-    if ($result1['hashcode']!=null and $result2['hashcode']!=null)
+    $result = $detect->fetch(PDO::FETCH_ASSOC);
+    if ($result['hashcode']!=null)
     {
         $main= $existmail;
     }
@@ -48,7 +50,7 @@ if ($start==1)
         $from = "Meysh@meysh.cc";
         $to = $mail;
         $subject = "梅什号-船员身份激活链接";
-        $message = "https://meysh.cc/user.php?link=$link";
+        $message = "https://meysh.cc/link/$link";
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers = "From:" . $from;
@@ -56,9 +58,9 @@ if ($start==1)
         $cid=Mt_rand (100000001,999999999);
         $hashcode=password_hash("$password", PASSWORD_DEFAULT);
         $time = date('Y-m-d H:i:s');
-        include 'getip.php';
-        $prereg = $pdo->prepare("INSERT INTO preuser (cid,mail,link,hashcode,time,ip) VALUES (?,?,?,?,?,?)");
-        $prereg->execute(array($cid,$mail,$link,$hashcode,$time,$ip));
+        $username='船员'.$cid;
+        $reg = $pdo->prepare("INSERT INTO information (uuid,mail,hashcode,username,permission,ip,time,img,coin) VALUES (?,?,?,?,?,?,?,?,?)");
+        $reg->execute(array("$cid",$mail,$hashcode,$username,$link,"ip",$time,"source/svg/preuser.svg","1"));
     }
 }
 ?>

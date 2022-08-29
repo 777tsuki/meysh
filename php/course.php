@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <?php
+switch (isset($_GET['link'])*1+isset($_GET['function'])*2+isset($_GET['uid'])*3)
+{
+  case "0":
+    break;
+  case "1":
+    break;
+  case "2":
+    break;
+  case "3":
+    break;
+  case "4":
+    break;
+  case "5":
+    break;
+  case "6":
+    break;
+}
 include 'updataip.php';
 ?>
 <html>
@@ -105,7 +122,7 @@ session_start();
               }
               else
               {
-                header("location:user.php?link=login");
+                header("location:user?link=login");
               }
               echo '<form class="headline" method="post" action="course.php">
                 <br>&ensp;

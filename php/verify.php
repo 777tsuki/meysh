@@ -1,6 +1,4 @@
 <?php
-$page="设置新密码";
-include 'mysql.php';
 $detect = $pdo->prepare("SELECT * FROM loser WHERE link=:link");
 $detect->bindValue(':link', $_SESSION["link"], PDO::PARAM_STR);
 $detect->execute();
