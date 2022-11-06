@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="source/loading.css">
 <link rel="shortcut icon" href="source/svg/logo.svg">
 <title><?php echo '梅什号 | '.$page?></title>
 <meta name="description" content="梅什号">
@@ -12,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="source/menus.css">
 </head>
 <body>
+  <div id="loadingDiv" style="height:1024px;position:absolute;left:0;width:100%;top:0;background:#eaecfa;z-index:10000;"><div id="loader" class="loader">少女折寿中...</div></div>
   <div class="whole" style="min-height:700px">
     <div>
       <img class="blank1" src="source/icon/blank.png" width="44" height="44">
@@ -41,5 +43,11 @@
     </div>
     <?php include 'pcmenus.php'?>
   </div>
+  <script>
+  document.onreadystatechange = completeLoading();
+  function completeLoading() {
+    document.getElementById('loadingDiv').style.display="none";
+  }
+  </script>
 </body>
 </html>
